@@ -11,6 +11,10 @@ article.tweet {
   border-width: 1px;
 }
 
+article:hover {
+  border-color: black;
+}
+
 article.tweet header {
   background-color: #eee;
   padding: 10px;
@@ -19,12 +23,21 @@ article.tweet header {
   border-color: darkgrey;
 }
 
+article:hover header {
+  background-color: lightgrey;
+}
+
 img.profile_pic {
   position: relative;
   float: left;
   height: 50px;
   width: 50px;
   top: -1px;
+  opacity: 0.75;
+}
+
+article:hover .profile_pic {
+  opacity: 1;
 }
 
 .nickname {
@@ -37,10 +50,15 @@ img.profile_pic {
 
 .name {
   position: relative;
+  color: darkgrey;
   border-bottom-width: 0px;
-  padding-bottom: 30px;
+  padding-bottom: 20px;
   padding-left: 60px;
   margin: 0;
+}
+
+article:hover .name {
+  color: black;
 }
 
 article.tweet footer {
