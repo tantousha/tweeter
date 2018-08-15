@@ -1,0 +1,55 @@
+.old_tweets {
+  margin-left: 2em;
+  margin-right: 2em;
+  margin-top: 10px;
+}
+
+article.tweet {
+  margin-top: 15px;
+  border-style: solid;
+  border-radius: 5px;
+  border-width: 1px;
+}
+
+article.tweet header {
+  background-color: #eee;
+  padding: 10px;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  border-color: darkgrey;
+}
+
+img.profile_pic {
+  position: relative;
+  float: left;
+  height: 50px;
+  width: 50px;
+  top: -1px;
+}
+
+.nickname {
+  position: relative;
+  float: right;
+  top: -3.5em;
+  right: 0.5em;
+  text-align: right;
+}
+
+.name {
+  position: relative;
+  border-bottom-width: 0px;
+  padding-bottom: 30px;
+  padding-left: 60px;
+  margin: 0;
+}
+
+article.tweet footer {
+  padding-left: 10px;
+  border-top-color: darkgrey;
+  border-top-width: 1px;
+  border-top-style: solid;
+}
+
+article.tweet p {
+  margin: 10px;
+}
