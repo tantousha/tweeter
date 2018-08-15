@@ -34,15 +34,15 @@ $(function() {
     function createTweetElement(tweet) {
       var $tweet = $('<article class="tweet">');
       var $header = $(`<header>
-        <img class="profile_pic" src=${tweetsDatabase.user.avatars.small}>
-        <h2 class="name">${tweetsDatabase.user.name}</h1>
-        <span class="nickname">${tweetsDatabase.user.handle}<span>
+        <img class="profile_pic" src=${tweet.user.avatars.small}>
+        <h2 class="name">${tweet.user.name}</h1>
+        <span class="nickname">${tweet.user.handle}<span>
       </header>`)
         .appendTo($tweet);
-      var $body = $(`<p>${tweetsDatabase.content.text}</p>`)
+      var $body = $(`<p>${tweet.content.text}</p>`)
         .appendTo($tweet);
       var $footer = $(`<footer>
-        <p>${tweetsDatabase.created_at}</p>
+        <p>${tweet.created_at}</p>
         <i class="far fa-flag"></i>
         <i class="far fa-heart"></i>
         <i class="fas fa-retweet"></i>
@@ -50,7 +50,7 @@ $(function() {
         .appendTo($tweet);
       return $tweet;
     }
-    
+
   console.log($tweets);
 
   $( 'form#new_tweet').on('submit', function(e) {
