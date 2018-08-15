@@ -55,8 +55,18 @@ $(function() {
 
   $( 'form#new_tweet').on('submit', function(e) {
     e.preventDefault();
+    let characterCount = $('textarea#tweetbox').val().length;
+    console.log(characterCount);
+    if (characterCount <= 0) {
+      alert("You have to write something! Please try again.");
+      return;
+    } else if (characterCount > 140) {
+      alert("Please keep your message to 140 character or less!");
+      return;
+    }
     let data = $.post("/tweets", $(this).serialize() );
-    console.log(data);
+    $('textarea#tweetbox').val('');
+    // console.log(data);
   });
 
 });
