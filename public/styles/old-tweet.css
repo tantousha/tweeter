@@ -4,6 +4,12 @@
   margin-top: 10px;
 }
 
+#old_tweets {
+  margin-left: 2em;
+  margin-right: 2em;
+  margin-top: 10px;
+}
+
 article.tweet {
   margin-top: 15px;
   border-style: solid;
@@ -34,6 +40,7 @@ img.profile_pic {
   width: 50px;
   top: -1px;
   opacity: 0.75;
+  border-radius: 5px;
 }
 
 article:hover .profile_pic {
@@ -43,7 +50,7 @@ article:hover .profile_pic {
 .nickname {
   position: relative;
   float: right;
-  top: -3.5em;
+  top: -3em;
   right: 0.5em;
   text-align: right;
 }
@@ -70,4 +77,16 @@ article.tweet footer {
 
 article.tweet p {
   margin: 10px;
+}
+
+footer i {
+  position: relative;
+  float: right;
+  top: -1.5em;
+  right: 0.5em;
+  opacity: 0;
+}
+
+article:hover i {
+  opacity: 1;
 }
