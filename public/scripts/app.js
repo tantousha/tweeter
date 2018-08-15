@@ -29,6 +29,7 @@ $(function() {
     });
   }
   loadTweets();
+  // loadTweet function built with Joel's assistance
 
     function createTweetElement(tweet) {
       var $tweet = $('<article class="tweet">');
@@ -49,13 +50,19 @@ $(function() {
         .appendTo($tweet);
       return $tweet;
     }
-  //var $tweet = createTweetElement(tweetsDatabase);
-
-
-// $.getJSON('/tweets', function ( tweets ) {
-// $tweets.append(tweets.map(createTweetElement));
-// });
-
+    
   console.log($tweets);
-  //$('#old_tweets').append($tweet);
+
+  $( 'form#new_tweet').on('submit', function(e) {
+    e.preventDefault();
+    let data = $.post("/tweets", $(this).serialize() );
+    console.log(data);
+  });
+
 });
+
+
+//   var button = $(event.target);
+//   var input = button.siblings('input');
+//   console.log(input);
+// }
