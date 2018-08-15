@@ -66,6 +66,7 @@ $(function() {
     }
     let data = $.post("/tweets", $(this).serialize() );
     $('textarea#tweetbox').val('');
+    loadTweets();
     // console.log(data);
   });
 
