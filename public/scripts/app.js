@@ -60,6 +60,7 @@ $(function() {
     return div.innerHTML;
   }
 
+// Code for creating the Compose button and revealing the new tweet box
   $( "#compose_button").click(function() {
     if ( $( ".new_tweet").is( ":hidden") ) {
       $( ".new_tweet").slideToggle( "400", function() {
@@ -70,6 +71,7 @@ $(function() {
     }
   });
 
+//Ajax override for the submit button.
   $( 'form#new_tweet').on('submit', function(e) {
     e.preventDefault();
     let characterCount = $('textarea#tweetbox').val().length;
@@ -105,9 +107,3 @@ $(function() {
   });
 
 });
-
-
-//   var button = $(event.target);
-//   var input = button.siblings('input');
-//   console.log(input);
-// }
