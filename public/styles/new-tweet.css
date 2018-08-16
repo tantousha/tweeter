@@ -6,6 +6,7 @@ h2 {
 }
 
 .new_tweet {
+  display: none;
   background: #eee;
   margin-left: 2em;
   margin-right: 2em;

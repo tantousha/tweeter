@@ -25,33 +25,51 @@ $(function() {
 
   function loadTweets() {
     $.getJSON('/tweets', function ( tweets ) {
-    $tweets.append(tweets.map(createTweetElement));
+      // tweets.forEach(function(tweet) {
+        $tweets.append(tweets.map(createTweetElement));
+        // THIS ALSO THROWS AN ERRORRORROROROROR
+      //});
     });
   }
   loadTweets();
   // loadTweet function built with Joel's assistance
 
-    function createTweetElement(tweet) {
-      var $tweet = $('<article class="tweet">');
-      var $header = $(`<header>
-        <img class="profile_pic" src=${tweet.user.avatars.small}>
-        <h2 class="name">${tweet.user.name}</h1>
-        <span class="nickname">${tweet.user.handle}<span>
-      </header>`)
-        .appendTo($tweet);
-      var $body = $(`<p>${tweet.content.text}</p>`)
-        .appendTo($tweet);
-      var $footer = $(`<footer>
-        <p>${tweet.created_at}</p>
-        <i class="far fa-flag"></i>
-        <i class="far fa-heart"></i>
-        <i class="fas fa-retweet"></i>
-      </footer>`)
-        .appendTo($tweet);
-      return $tweet;
-    }
+  function createTweetElement(tweet) {
+    var $tweet = $('<article class="tweet">');
+    var $header = $(`<header>
+      <img class="profile_pic" src=${tweet.user.avatars.small}>
+      <h2 class="name">${tweet.user.name}</h1>
+      <span class="nickname">${tweet.user.handle}<span>
+    </header>`)
+      .appendTo($tweet);
+    var $body = $(`<p>${tweet.content.text}</p>`)
+      .appendTo($tweet);
+    var $footer = $(`<footer>
+      <p>${tweet.created_at}</p>
+      <i class="far fa-flag"></i>
+      <i class="far fa-heart"></i>
+      <i class="fas fa-retweet"></i>
+    </footer>`)
+      .appendTo($tweet);
+    return $tweet;
+  }
 
-  console.log($tweets);
+  function escape(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    console.log(div);
+    return div.innerHTML;
+  }
+
+  $( "#compose_button").click(function() {
+    if ( $( ".new_tweet").is( ":hidden") ) {
+      $( ".new_tweet").slideDown( "400", function() {
+        $( "#tweetbox").focus();
+      });
+    } else {
+      $( ".new_tweet" ).slideUp( "400" );
+    }
+  });
 
   $( 'form#new_tweet').on('submit', function(e) {
     e.preventDefault();
@@ -64,9 +82,25 @@ $(function() {
       alert("Please keep your message to 140 character or less!");
       return;
     }
-    let data = $.post("/tweets", $(this).serialize() );
-    $('textarea#tweetbox').val('');
-    loadTweets();
+    let data = $(this).serialize();
+    $.ajax({
+      url: "/tweets",
+      method:'POST',
+      data: escape(data),
+      success: function(result){
+        console.log("Result ",result);
+        $('#old_tweets').empty();
+        loadTweets();
+        $('textarea#tweetbox').val('');
+        $('.counter').html(140);
+      },
+      error: function(err){
+        console.log("Error ",error);
+
+      }
+    });
+    //let data = $.ajax("/tweets", $(this).serialize() );
+
     // console.log(data);
   });
 

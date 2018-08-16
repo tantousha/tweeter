@@ -23,3 +23,19 @@
     line-height: 80px;
     color: #e8fdff;
 }
+
+#compose_button {
+  position: relative;
+  float: right;
+  margin-top: 0.6em;
+  padding: 10px;
+  border-width: 2px;
+  border-color: black;
+  border-radius: 5px;
+  font-size: 1.5em;
+  background-color: white;
+}
+
+#compose_button:hover {
+  color: #00a087;
+}
