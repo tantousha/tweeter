@@ -63,7 +63,7 @@ $(function() {
 
   $( "#compose_button").click(function() {
     if ( $( ".new_tweet").is( ":hidden") ) {
-      $( ".new_tweet").slideDown( "400", function() {
+      $( ".new_tweet").slideToggle( "400", function() {
         $( "#tweetbox").focus();
       });
     } else {
@@ -76,10 +76,14 @@ $(function() {
     let characterCount = $('textarea#tweetbox').val().length;
     console.log(characterCount);
     if (characterCount <= 0) {
-      alert("You have to write something! Please try again.");
+      $( "#zero_error" ).slideDown( "slow" );
+      $( ".counter" ).css( "left", "128px");
+      //alert("You have to write something! Please try again.");
       return;
     } else if (characterCount > 140) {
-      alert("Please keep your message to 140 character or less!");
+      $( "#max_error" ).slideDown( "slow" );
+      $( ".counter" ).css( "left", "128px" );
+      //alert("Please keep your message to 140 character or less!");
       return;
     }
     let data = $(this).serialize();
@@ -92,11 +96,11 @@ $(function() {
         $('#old_tweets').empty();
         loadTweets();
         $('textarea#tweetbox').val('');
-        $('.counter').html(140);
+        $('.counter').html(140).css( "left", "0px" );
+        $(".error").slideUp();
       },
       error: function(err){
         console.log("Error ",error);
-
       }
     });
     //let data = $.ajax("/tweets", $(this).serialize() );
