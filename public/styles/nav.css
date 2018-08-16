@@ -27,6 +27,7 @@
 #compose_button {
   position: relative;
   float: right;
+  cursor: pointer;
   margin-top: 0.6em;
   padding: 10px;
   border-width: 2px;

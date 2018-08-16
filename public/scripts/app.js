@@ -25,12 +25,13 @@ $(function() {
 
   function loadTweets() {
     $.getJSON('/tweets', function ( tweets ) {
-      // tweets.forEach(function(tweet) {
-        $tweets.append(tweets.map(createTweetElement));
+      tweets.forEach(function(tweet) {
+        $tweets.prepend(createTweetElement(tweet));
         // THIS ALSO THROWS AN ERRORRORROROROROR
-      //});
+      });
     });
   }
+
   loadTweets();
   // loadTweet function built with Joel's assistance
 
@@ -78,19 +79,18 @@ $(function() {
     if (characterCount <= 0) {
       $( "#zero_error" ).slideDown( "slow" );
       $( ".counter" ).css( "left", "128px");
-      //alert("You have to write something! Please try again.");
       return;
     } else if (characterCount > 140) {
       $( "#max_error" ).slideDown( "slow" );
       $( ".counter" ).css( "left", "128px" );
-      //alert("Please keep your message to 140 character or less!");
       return;
     }
     let data = $(this).serialize();
+    let cleansedData = $("<div>").text(data);
     $.ajax({
       url: "/tweets",
       method:'POST',
-      data: escape(data),
+      data: cleansedData,
       success: function(result){
         console.log("Result ",result);
         $('#old_tweets').empty();
