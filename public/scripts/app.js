@@ -78,12 +78,12 @@ $(function() {
     console.log(characterCount);
     if (characterCount <= 0) {
       $( "#max_error" ).slideUp();
-      $( "#zero_error" ).slideDown( "slow" );
+      $( "#zero_error" ).delay(300).slideDown(300);
       $( ".counter" ).css( "left", "128px");
       return;
     } else if (characterCount > 140) {
       $( "#zero_error" ).slideUp();
-      $( "#max_error" ).slideDown( "slow" );
+      $( "#max_error" ).delay(300).slideDown(300);
       $( ".counter" ).css( "left", "128px" );
       return;
     }
@@ -98,7 +98,7 @@ $(function() {
         loadTweets();
         $('textarea#tweetbox').val('');
         $('.counter').html(140).css( "left", "0px" );
-        $(".error").slideUp();
+        $(".error").slideUp(100);
       },
       error: function(err){
         console.log("Error ",error);
