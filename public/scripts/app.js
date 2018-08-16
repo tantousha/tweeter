@@ -27,7 +27,6 @@ $(function() {
     $.getJSON('/tweets', function ( tweets ) {
       tweets.forEach(function(tweet) {
         $tweets.prepend(createTweetElement(tweet));
-        // THIS ALSO THROWS AN ERRORRORROROROROR
       });
     });
   }
@@ -36,6 +35,8 @@ $(function() {
   // loadTweet function built with Joel's assistance
 
   function createTweetElement(tweet) {
+    console.log(tweet.content.text);
+    console.log(escape(tweet.content.text));
     var $tweet = $('<article class="tweet">');
     var $header = $(`<header>
       <img class="profile_pic" src=${tweet.user.avatars.small}>
@@ -43,7 +44,7 @@ $(function() {
       <span class="nickname">${tweet.user.handle}<span>
     </header>`)
       .appendTo($tweet);
-    var $body = $(`<p>${tweet.content.text}</p>`)
+    var $body = $(`<p>${escape(tweet.content.text)}</p>`)
       .appendTo($tweet);
     var $footer = $(`<footer>
       <p>${tweet.created_at}</p>
@@ -86,11 +87,10 @@ $(function() {
       return;
     }
     let data = $(this).serialize();
-    let cleansedData = $("<div>").text(data);
     $.ajax({
       url: "/tweets",
       method:'POST',
-      data: cleansedData,
+      data: escape(data),
       success: function(result){
         console.log("Result ",result);
         $('#old_tweets').empty();
@@ -103,9 +103,6 @@ $(function() {
         console.log("Error ",error);
       }
     });
-    //let data = $.ajax("/tweets", $(this).serialize() );
-
-    // console.log(data);
   });
 
 });

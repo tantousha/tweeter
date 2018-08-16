@@ -9,12 +9,7 @@ MongoClient.connect(MONGODB_URI, (err, db) => {
     throw err;
   }
 
-  db.collection("tweets").find({}, (err, result) => {
-    if (err) throw err;
-
-    console.log("for each item yielded by the cursor: ");
-    results.each((err, item) => console.log(" ", item));
+  console.log(`Connected to mongodb: ${MONGODB_URI}`);
 
     db.close();
-  });
 });
