@@ -35,8 +35,6 @@ $(function() {
   // loadTweet function built with Joel's assistance
 
   function createTweetElement(tweet) {
-    console.log(tweet.content.text);
-    console.log(escape(tweet.content.text));
     var $tweet = $('<article class="tweet">');
     var $header = $(`<header>
       <img class="profile_pic" src=${tweet.user.avatars.small}>
@@ -59,7 +57,6 @@ $(function() {
   function escape(str) {
     var div = document.createElement('div');
     div.appendChild(document.createTextNode(str));
-    console.log(div);
     return div.innerHTML;
   }
 
@@ -78,10 +75,12 @@ $(function() {
     let characterCount = $('textarea#tweetbox').val().length;
     console.log(characterCount);
     if (characterCount <= 0) {
+      $( "#max_error" ).slideUp();
       $( "#zero_error" ).slideDown( "slow" );
       $( ".counter" ).css( "left", "128px");
       return;
     } else if (characterCount > 140) {
+      $( "#zero_error" ).slideUp();
       $( "#max_error" ).slideDown( "slow" );
       $( ".counter" ).css( "left", "128px" );
       return;
