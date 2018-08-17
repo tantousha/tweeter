@@ -45,13 +45,20 @@ $(function() {
     var $body = $(`<p>${escape(tweet.content.text)}</p>`)
       .appendTo($tweet);
     var $footer = $(`<footer>
-      <p>${tweet.created_at}</p>
+      <p>${dateCalculator(tweet.created_at)} days ago.</p>
       <i class="far fa-flag"></i>
       <i class="far fa-heart"></i>
       <i class="fas fa-retweet"></i>
     </footer>`)
       .appendTo($tweet);
     return $tweet;
+  }
+
+  function dateCalculator(daysSinceinMs) {
+    let todayInMs = new Date().getTime();
+    let msPerDay = 24 * 60 * 60 * 1000
+    let daysSince = Math.round((todayInMs - daysSinceinMs) / msPerDay);
+    return daysSince;
   }
 
   function escape(str) {
