@@ -1,3 +1,4 @@
+require('dotenv').config();
 "use strict";
 
 // Basic express setup:
@@ -11,7 +12,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
 const MongoClient = require("mongodb").MongoClient;
-const MONGODB_URI = "mongodb://localhost:27017/tweets";
+const MONGODB_URI = process.env.MONGODB_URI;
 
 //call to connect to mongodb and link it with DataHelpers and tweetsRoutes
 MongoClient.connect(MONGODB_URI, (err, db) => {
